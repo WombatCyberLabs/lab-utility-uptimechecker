@@ -9,7 +9,9 @@ let testResults;
 
 app.use(express.static(publicPath));
 
-app.get('/testResults',(req,res)=>{
+app.get('/testResults', async (req,res)=>{
+	if(req.query.update)
+		await tester.runTest();
 	res.send(testResults);
 });
 
